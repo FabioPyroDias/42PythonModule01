@@ -1,0 +1,158 @@
+class Plant:
+    def __init__(self, name: str, height: int, age: int) -> None:
+        """This method is used to assign values to object properties, or to
+        perform operations when the object is being created"""
+        self.name = name
+        self.__height = 0
+        self.__age = 0
+        self.set_height(height)
+        self.set_age(age)
+
+    def set_height(self, height: int) -> None:
+        """Set Plant's height, ensuring its not negative"""
+        if height >= 0:
+            self.__height = height
+        else:
+            print(f"Invalid operation attempted: height {height}cm [REJECTED]")
+
+    def set_age(self, age: int) -> None:
+        """Set Plant's age, ensuring its not negative"""
+        if age >= 0:
+            self.__age = age
+        else:
+            print(f"Invalid operation attempted: age {age} days [REJECTED]")
+
+    def get_height(self) -> int:
+        """Returns Plant's current height"""
+        return self.__height
+
+    def get_age(self) -> int:
+        """Returns Plant's current age"""
+        return self.__age
+
+    def get_info(self, type: str = "Plant") -> str:
+        """Returns Plant's current information as well as it's type"""
+        return f"{self.name} ({type}): {self.__height}cm, {self.__age} days,"
+
+
+class Flower(Plant):
+    def __init__(self, name: str, height: int, age: int, color: str):
+        """This method calls the parent class method __init__, with
+        the base properties. The new properties are handled in this
+        function"""
+        super().__init__(name, height, age)
+        self.set_color(color)
+
+    def set_color(self, color: str) -> None:
+        """Set Flower's color"""
+        self.__color = color
+
+    def get_color(self) -> str:
+        """Returns Flower's current color"""
+        return self.__color
+
+    def bloom(self):
+        """Specific Flower method."""
+        print(f"{self.name} is blooming beautifully!")
+
+    def print_info(self):
+        """Prints Flower information"""
+        print(f"{super().get_info('Flower')} {self.__color} color")
+
+
+class Tree(Plant):
+    def __init__(self, name: str, height: int, age: int, trunk_diameter: str):
+        """This method calls the parent class method __init__, with
+        the base properties. The new properties are handled in this
+        function"""
+        super().__init__(name, height, age)
+        self.__trunk_diameter = 0
+        self.set_trunk_diameter(trunk_diameter)
+
+    def set_trunk_diameter(self, trunk_diameter: int) -> None:
+        """Set Tree's trunk diameter"""
+        if trunk_diameter > 0:
+            self.__trunk_diameter = trunk_diameter
+        else:
+            print("Error")
+
+    def get_trunk_diameter(self) -> int:
+        """Returns Tree's current trunk diameter"""
+        return self.__trunk_diameter
+
+    def produce_shade(self):
+        """Specific Tree method"""
+        print(f"{self.name} provides "
+              f"{(3.14 * ((self.__trunk_diameter) ** 2))/100:.0f} "
+              f"square meters of shade")
+
+    def print_info(self):
+        """Prints Tree information"""
+        print(f"{super().get_info('Tree')} "
+              f"{self.__trunk_diameter}cm diameter")
+
+
+class Vegetable(Plant):
+    def __init__(self, name: str, height: int, age: int,
+                 harvest_season: str, nutritional_value: str) -> None:
+        """This method calls the parent class method __init__, with
+        the base properties. The new properties are handled in this
+        function"""
+        super().__init__(name, height, age)
+        self.set_harvest_season(harvest_season)
+        self.set_nutritional_value(nutritional_value)
+
+    def set_harvest_season(self, harvest_season: str) -> None:
+        """Set Vegetables's harvest season"""
+        self.__harvest_season = harvest_season
+
+    def set_nutritional_value(self, nutritional_value: str) -> None:
+        """Set Vegetables's nutritional value"""
+        self.__nutritional_value = nutritional_value
+
+    def get_harvest_seson(self) -> str:
+        """Returns Vegetables's current harvest season"""
+        return self.__harvest_season
+
+    def get_nutritional_value(self) -> str:
+        """Returns Vegetables's current nutritional value"""
+        return self.__nutritional_value
+
+    def print_nutritional_value(self):
+        """Specific Vegetable method"""
+        print(f"{self.name} is rich in vitamin {self.__nutritional_value}")
+
+    def print_info(self):
+        """Prints Vegetable information"""
+        print(f"{super().get_info('Vegetable')} "
+              f"{self.__harvest_season} harvest")
+
+
+if __name__ == "__main__":
+    print("=== Garden Plant Types ===")
+    print()
+    p1 = Flower("Rose", 25, 30, "red")
+    p1.print_info()
+    p1.bloom()
+    print()
+    p2 = Flower("Tulip", 40, 20, "yellow")
+    p2.print_info()
+    p2.bloom()
+    print()
+    print()
+    t1 = Tree("Oak", 500, 1825, 50)
+    t1.print_info()
+    t1.produce_shade()
+    print()
+    t2 = Tree("Maple", 800, 3650, 60)
+    t2.print_info()
+    t2.produce_shade()
+    print()
+    print()
+    v1 = Vegetable("Tomato", 80, 90, "summer", "C")
+    v1.print_info()
+    v1.print_nutritional_value()
+    print()
+    v2 = Vegetable("Carrot", 30, 70, "fall", "beta-carotene")
+    v2.print_info()
+    v2.print_nutritional_value()
