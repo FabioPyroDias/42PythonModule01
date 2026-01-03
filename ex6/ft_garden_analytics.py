@@ -104,6 +104,7 @@ class GardenManager():
                   f"{plant} to Garden [REJECTED]")
 
     def grow_plants(self):
+        """Makes all Plant's grow 1cm"""
         print(f"{self.name} is helping all plants grow...")
         current_height = 0
         for i in range(len(self.__plants)):
@@ -116,6 +117,9 @@ class GardenManager():
         return self.__plants
 
     def print_garden_report(self) -> None:
+        """Lists all the plants in the Garden, as well as their information.
+        Displays the ammount of Plant's as well as their total growth.
+        Finally, enumerates the types of plants in the Garden"""
         print(f"=== {self.name}'s Garden Report ===")
         n_plants = len(self.__plants)
         t_g = 0
@@ -140,11 +144,40 @@ class GardenManager():
 
     @classmethod
     def create_garden_network(cls):
+        """Returns all Gardens in the Garden Network"""
         return cls.__gardens
 
 
 class GardenStats():
-    pass
+
+    @staticmethod
+    def validate_heights(garden: GardenManager) -> bool:
+        """Checks wheter all Plant's height are greater than 0"""
+        for plant in garden.get_plants():
+            if plant.get_height() < 0:
+                return False
+        return True
+
+    @staticmethod
+    def get_garden_scores() -> str:
+        """Returns string with respective Garden Owners and their Points"""
+        gardens = GardenManager.create_garden_network()
+        info = ""
+        for index in range(len(gardens)):
+            info += gardens[index].name + ": "
+            scores = 0
+            for plant in gardens[index].get_plants():
+                if type(plant) is PrizeFlower:
+                    scores += plant.get_prize_points()
+            info += f"{scores}"
+            if (index != len(gardens) - 1):
+                info += " "
+        return info
+
+    @staticmethod
+    def get_total_gardens() -> int:
+        """Returns number of Gardens managed"""
+        return (len(GardenManager.create_garden_network()))
 
 
 if __name__ == "__main__":
@@ -155,6 +188,24 @@ if __name__ == "__main__":
     alice.add_plant(FloweringPlant("Rose", 25, "red"))
     alice.add_plant(PrizeFlower("Sunflower", 50, "yellow", 10))
     print()
+    bob = GardenManager("Bob")
+    bob.add_plant(PrizeFlower("Dahlia", 45, "pink", 30))
+    bob.add_plant(PrizeFlower("Tulip", 40, "red", 25))
+    bob.add_plant(PrizeFlower("Petunia", 35, "pink", 42))
+    print()
     alice.grow_plants()
     print()
+    bob.grow_plants()
+    print()
+    bob.add_plant(PrizeFlower("Lavender", 15, "purple", 10))
+    bob.add_plant(PrizeFlower("Wisteria", 25, "purple", 50))
+    print()
+    bob.grow_plants()
+    print()
     alice.print_garden_report()
+    print()
+    bob.print_garden_report()
+    print()
+    print(f"Height validation test: {GardenStats.validate_heights(alice)}")
+    print(f"Garden scores - {GardenStats.get_garden_scores()}")
+    print(f"Total gardens managed: {GardenStats.get_total_gardens()}")
