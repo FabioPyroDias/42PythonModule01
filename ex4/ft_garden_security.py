@@ -37,7 +37,7 @@ class SecurePlant:
             print(f"Invalid operation attempted: age {age} days [REJECTED]")
             print("Security: Negative age rejected")
 
-    def print_info(self):
+    def print_info(self) -> None:
         """Prints SecurePlant information"""
         return f"{self.name} ({self.__height}cm, {self.__age} days)"
 

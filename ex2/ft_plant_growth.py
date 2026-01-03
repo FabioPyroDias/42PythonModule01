@@ -8,20 +8,20 @@ class Plant:
         self.height = height
         self.age_days = age_days
 
-    def grow(self):
+    def grow(self) -> None:
         """The plant gets 1 cm taller"""
         self.height += 1
 
-    def age(self):
+    def age(self) -> None:
         """The plant gets 1 day older"""
         self.age_days += 1
 
-    def update(self):
+    def update(self) -> None:
         """Updates both properties: height and age"""
         self.grow()
         self.age()
 
-    def get_info(self):
+    def get_info(self) -> None:
         """Prints Plant information"""
         print(f"{self.name}: {self.height}cm, {self.age_days} days old")
 

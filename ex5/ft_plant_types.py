@@ -51,11 +51,11 @@ class Flower(Plant):
         """Returns Flower's current color"""
         return self.__color
 
-    def bloom(self):
+    def bloom(self) -> None:
         """Specific Flower method."""
         print(f"{self.name} is blooming beautifully!")
 
-    def print_info(self):
+    def print_info(self) -> None:
         """Prints Flower information"""
         print(f"{super().get_info('Flower')} {self.__color} color")
 
@@ -80,13 +80,13 @@ class Tree(Plant):
         """Returns Tree's current trunk diameter"""
         return self.__trunk_diameter
 
-    def produce_shade(self):
+    def produce_shade(self) -> None:
         """Specific Tree method"""
         print(f"{self.name} provides "
               f"{(3.14 * ((self.__trunk_diameter) ** 2))/100:.0f} "
               f"square meters of shade")
 
-    def print_info(self):
+    def print_info(self) -> None:
         """Prints Tree information"""
         print(f"{super().get_info('Tree')} "
               f"{self.__trunk_diameter}cm diameter")
@@ -118,11 +118,11 @@ class Vegetable(Plant):
         """Returns Vegetables's current nutritional value"""
         return self.__nutritional_value
 
-    def print_nutritional_value(self):
+    def print_nutritional_value(self) -> None:
         """Specific Vegetable method"""
         print(f"{self.name} is rich in vitamin {self.__nutritional_value}")
 
-    def print_info(self):
+    def print_info(self) -> None:
         """Prints Vegetable information"""
         print(f"{super().get_info('Vegetable')} "
               f"{self.__harvest_season} harvest")

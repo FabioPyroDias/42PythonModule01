@@ -92,7 +92,7 @@ class GardenManager():
         self.__initial_heights = []
         GardenManager.__gardens.append(self)
 
-    def add_plant(self, plant: Plant):
+    def add_plant(self, plant: Plant) -> None:
         """Adds Plant to Garden, ensuring it isn't None.
         Additionaly, record Plant's starting height"""
         if plant is not None:
@@ -103,7 +103,7 @@ class GardenManager():
             print(f"Invalid operation attempted: Adding "
                   f"{plant} to Garden [REJECTED]")
 
-    def grow_plants(self):
+    def grow_plants(self) -> None:
         """Makes all Plant's grow 1cm"""
         print(f"{self.name} is helping all plants grow...")
         current_height = 0
