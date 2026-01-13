@@ -1,7 +1,10 @@
 class Plant:
+    """Represents a Plant and its properties"""
+
     def __init__(self, name: str, height: int, age: int) -> None:
         """This method is used to assign values to object properties, or to
         perform operations when the object is being created"""
+
         self.name = name
         self.__height = 0
         self.__age = 0
@@ -30,16 +33,19 @@ class Plant:
         """Returns Plant's current age"""
         return self.__age
 
-    def get_info(self, type: str = "Plant") -> str:
+    def __str__(self, type: str = "Plant") -> str:
         """Returns Plant's current information as well as it's type"""
         return f"{self.name} ({type}): {self.__height}cm, {self.__age} days,"
 
 
 class Flower(Plant):
+    """Inherits Plant. Represents a specific Plant (Flower)"""
+
     def __init__(self, name: str, height: int, age: int, color: str):
         """This method calls the parent class method __init__, with
         the base properties. The new properties are handled in this
         function"""
+
         super().__init__(name, height, age)
         self.set_color(color)
 
@@ -55,16 +61,19 @@ class Flower(Plant):
         """Specific Flower method."""
         print(f"{self.name} is blooming beautifully!")
 
-    def print_info(self) -> None:
+    def __str__(self) -> str:
         """Prints Flower information"""
-        print(f"{super().get_info('Flower')} {self.__color} color")
+        return f"{super().get_info('Flower')} {self.__color} color"
 
 
 class Tree(Plant):
+    """Inherits Plant. Represents a specific Plant (Tree)"""
+
     def __init__(self, name: str, height: int, age: int, trunk_diameter: str):
         """This method calls the parent class method __init__, with
         the base properties. The new properties are handled in this
         function"""
+
         super().__init__(name, height, age)
         self.__trunk_diameter = 0
         self.set_trunk_diameter(trunk_diameter)
@@ -86,18 +95,21 @@ class Tree(Plant):
               f"{(3.14 * ((self.__trunk_diameter) ** 2))/100:.0f} "
               f"square meters of shade")
 
-    def print_info(self) -> None:
+    def __str__(self) -> str:
         """Prints Tree information"""
-        print(f"{super().get_info('Tree')} "
-              f"{self.__trunk_diameter}cm diameter")
+        return f"{super().get_info('Tree')} "
+               f"{self.__trunk_diameter}cm diameter"
 
 
 class Vegetable(Plant):
+    """Inherits Plant. Represents a specific Plant (Vegetable)"""
+
     def __init__(self, name: str, height: int, age: int,
                  harvest_season: str, nutritional_value: str) -> None:
         """This method calls the parent class method __init__, with
         the base properties. The new properties are handled in this
         function"""
+
         super().__init__(name, height, age)
         self.set_harvest_season(harvest_season)
         self.set_nutritional_value(nutritional_value)
@@ -122,37 +134,37 @@ class Vegetable(Plant):
         """Specific Vegetable method"""
         print(f"{self.name} is rich in vitamin {self.__nutritional_value}")
 
-    def print_info(self) -> None:
+    def __str__(self) -> str:
         """Prints Vegetable information"""
-        print(f"{super().get_info('Vegetable')} "
-              f"{self.__harvest_season} harvest")
+        return f"{super().get_info('Vegetable')} "
+               f"{self.__harvest_season} harvest"
 
 
 if __name__ == "__main__":
     print("=== Garden Plant Types ===")
     print()
     p1 = Flower("Rose", 25, 30, "red")
-    p1.print_info()
+    print(p1)
     p1.bloom()
     print()
     p2 = Flower("Tulip", 40, 20, "yellow")
-    p2.print_info()
+    print(p2)
     p2.bloom()
     print()
     print()
     t1 = Tree("Oak", 500, 1825, 50)
-    t1.print_info()
+    print(t1)
     t1.produce_shade()
     print()
     t2 = Tree("Maple", 800, 3650, 60)
-    t2.print_info()
+    print(t2)
     t2.produce_shade()
     print()
     print()
     v1 = Vegetable("Tomato", 80, 90, "summer", "C")
-    v1.print_info()
+    print(v1)
     v1.print_nutritional_value()
     print()
     v2 = Vegetable("Carrot", 30, 70, "fall", "beta-carotene")
-    v2.print_info()
+    print(v2)
     v2.print_nutritional_value()

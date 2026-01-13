@@ -4,6 +4,7 @@ class SecurePlant:
     def __init__(self, name: str, height: int, age: int) -> None:
         """This method is used to assign values to object properties, or to
         perform operations when the object is being created"""
+
         self.name = name
         self.__height = 0
         self.__age = 0
@@ -32,12 +33,12 @@ class SecurePlant:
         """Set Plant's age, ensuring its not negative"""
         if age >= 0:
             self.__age = age
-            print(f"Age updated: {age} days old [OK]")
+            print(f"Age updated: {age} days [OK]")
         else:
             print(f"Invalid operation attempted: age {age} days [REJECTED]")
             print("Security: Negative age rejected")
 
-    def print_info(self) -> None:
+    def __str__(self) -> str:
         """Prints SecurePlant information"""
         return f"{self.name} ({self.__height}cm, {self.__age} days)"
 
@@ -48,4 +49,4 @@ if __name__ == "__main__":
     print()
     rose.set_height(-5)
     print()
-    print(f"Current plant: {rose.print_info()}")
+    print(f"Current plant: {rose}")
