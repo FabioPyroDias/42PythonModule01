@@ -44,6 +44,9 @@ class SecurePlant:
 
 
 if __name__ == "__main__":
+    """This method is the equivalent of the main method.
+    It executes when the file is ran as a script,
+    but not when it's imported as a module"""
     print("=== Garden Security System ===")
     rose = SecurePlant("Rose", 25, 30)
     print()

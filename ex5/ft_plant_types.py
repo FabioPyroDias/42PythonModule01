@@ -63,7 +63,7 @@ class Flower(Plant):
 
     def __str__(self) -> str:
         """Prints Flower information"""
-        return f"{super().get_info('Flower')} {self.__color} color"
+        return f"{super().__str__('Flower')} {self.__color} color"
 
 
 class Tree(Plant):
@@ -97,8 +97,8 @@ class Tree(Plant):
 
     def __str__(self) -> str:
         """Prints Tree information"""
-        return f"{super().get_info('Tree')} "
-               f"{self.__trunk_diameter}cm diameter"
+        return f"{super().__str__('Tree')} " \
+        f"{self.__trunk_diameter}cm diameter"
 
 
 class Vegetable(Plant):
@@ -134,13 +134,17 @@ class Vegetable(Plant):
         """Specific Vegetable method"""
         print(f"{self.name} is rich in vitamin {self.__nutritional_value}")
 
+
     def __str__(self) -> str:
         """Prints Vegetable information"""
-        return f"{super().get_info('Vegetable')} "
-               f"{self.__harvest_season} harvest"
+        return f"{super().__str__('Vegetable')} " \
+        f"{self.__harvest_season} harvest"
 
 
 if __name__ == "__main__":
+    """This method is the equivalent of the main method.
+    It executes when the file is ran as a script,
+    but not when it's imported as a module"""
     print("=== Garden Plant Types ===")
     print()
     p1 = Flower("Rose", 25, 30, "red")
@@ -151,7 +155,6 @@ if __name__ == "__main__":
     print(p2)
     p2.bloom()
     print()
-    print()
     t1 = Tree("Oak", 500, 1825, 50)
     print(t1)
     t1.produce_shade()
@@ -159,7 +162,6 @@ if __name__ == "__main__":
     t2 = Tree("Maple", 800, 3650, 60)
     print(t2)
     t2.produce_shade()
-    print()
     print()
     v1 = Vegetable("Tomato", 80, 90, "summer", "C")
     print(v1)

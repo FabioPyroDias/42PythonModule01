@@ -1,4 +1,6 @@
 class Plant():
+    """Represents a Plant and its properties"""
+
     def __init__(self, name: str, height: int) -> None:
         """This method is used to assign values to object properties, or to
         perform operations when the object is being created"""
@@ -17,16 +19,14 @@ class Plant():
         """Returns Plant's current height"""
         return self.__height
 
-    def get_info(self) -> str:
+    def __str__(self) -> str:
         """Returns Plant's current information"""
         return f"{self.name}: {self.__height}cm"
 
-    def print_info(self) -> None:
-        """Prints Plant information"""
-        print(self.get_info())
-
 
 class FloweringPlant(Plant):
+    """Inherits Plant. Represents a specific Plant (FloweringPlant)"""
+
     def __init__(self, name: str, height: int, color: str) -> None:
         """This method calls the parent class method __init__, with
         the base properties. The new properties are handled in this
@@ -47,12 +47,14 @@ class FloweringPlant(Plant):
         """Returns FloweringPlant's color"""
         return self.__color
 
-    def get_info(self) -> str:
+    def __str__(self) -> str:
         """Returns FloweringPlant's current information"""
-        return f"{super().get_info()}, {self.__color} flowers (blooming)"
+        return f"{super().__str__()}, {self.__color} flowers (blooming)"
 
 
 class PrizeFlower(FloweringPlant):
+    """Inherits Plant. Represents a specific Plant (PrizeFlower)"""
+
     def __init__(self, name: str, height: int,
                  color: str, prize_points: int) -> None:
         """This method calls the parent class method __init__, with
@@ -63,7 +65,7 @@ class PrizeFlower(FloweringPlant):
         self.set_prize_points(prize_points)
 
     def set_prize_points(self, prize_points: int) -> None:
-        """Set PrizePlant's prize_points, ensuring it's not negative"""
+        """Set PrizeFlower's prize_points, ensuring it's not negative"""
         if prize_points >= 0:
             self.__prize_points = prize_points
         else:
@@ -71,15 +73,17 @@ class PrizeFlower(FloweringPlant):
                   f"{prize_points} [REJECTED]")
 
     def get_prize_points(self) -> int:
-        """Returns PrizePlant's current prize_points"""
+        """Returns PrizeFlower's current prize_points"""
         return self.__prize_points
 
-    def get_info(self) -> str:
-        """Returns PrizePlant's current information"""
-        return f"{super().get_info()}, Prize points: {self.__prize_points}"
+    def __str__(self) -> str:
+        """Returns PrizeFlower's current information"""
+        return f"{super().__str__()}, Prize points: {self.__prize_points}"
 
 
 class GardenManager():
+    """Represents the Garden. It will hold several flowers 
+    and manage them"""
     __gardens = []
 
     def __init__(self, name: str) -> None:
@@ -98,7 +102,7 @@ class GardenManager():
         if plant is not None:
             self.__plants.append(plant)
             self.__initial_heights.append(plant.get_height())
-            print(f"Added {plant.name} to {self.name}'s Garden")
+            print(f"Added {plant.name} to {self.name}'s garden")
         else:
             print(f"Invalid operation attempted: Adding "
                   f"{plant} to Garden [REJECTED]")
@@ -127,15 +131,17 @@ class GardenManager():
         plant_type_flowering = 0
         plant_type_prize = 0
         print("Plants in garden:")
-        for i in range(n_plants):
-            print(f"- {self.__plants[i].get_info()}")
-            t_g += self.__plants[i].get_height() - self.__initial_heights[i]
-            if type(self.__plants[i]) is Plant:
+        index = 0
+        while index < n_plants:
+            print(f"- {self.__plants[index]}")
+            t_g += self.__plants[index].get_height() - self.__initial_heights[index]
+            if type(self.__plants[index]) is Plant:
                 plant_type_normal += 1
-            elif type(self.__plants[i]) is FloweringPlant:
+            elif type(self.__plants[index]) is FloweringPlant:
                 plant_type_flowering += 1
-            elif type(self.__plants[i]) is PrizeFlower:
+            elif type(self.__plants[index]) is PrizeFlower:
                 plant_type_prize += 1
+            index += 1
         print()
         print(f"Plants added: {n_plants}, Total growth: {t_g}cm")
         print(f"Plant types: {plant_type_normal} regular, "
@@ -163,7 +169,8 @@ class GardenStats():
         """Returns string with respective Garden Owners and their Points"""
         gardens = GardenManager.create_garden_network()
         info = ""
-        for index in range(len(gardens)):
+        index = 0
+        while index < len(gardens):
             info += gardens[index].name + ": "
             scores = 0
             for plant in gardens[index].get_plants():
@@ -172,6 +179,7 @@ class GardenStats():
             info += f"{scores}"
             if (index != len(gardens) - 1):
                 info += " "
+            index += 1
         return info
 
     @staticmethod
@@ -181,6 +189,9 @@ class GardenStats():
 
 
 if __name__ == "__main__":
+    """This method is the equivalent of the main method.
+    It executes when the file is ran as a script,
+    but not when it's imported as a module"""
     print("=== Garden Management System Demo ===")
     print()
     alice = GardenManager("Alice")
