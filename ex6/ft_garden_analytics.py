@@ -159,9 +159,11 @@ class GardenStats():
     @staticmethod
     def validate_heights(garden: GardenManager) -> bool:
         """Checks wheter all Plant's height are greater than 0"""
-        for plant in garden.get_plants():
-            if plant.get_height() < 0:
+        plant_index = 0
+        while plant_index < len(garden.get_plants()):
+            if garden.get_plants()[plant_index].get_height() < 0:
                 return False
+            plant_index += 1
         return True
 
     @staticmethod
@@ -173,9 +175,12 @@ class GardenStats():
         while index < len(gardens):
             info += gardens[index].name + ": "
             scores = 0
-            for plant in gardens[index].get_plants():
-                if type(plant) is PrizeFlower:
-                    scores += plant.get_prize_points()
+            plants = gardens[index].get_plants()
+            plant_index = 0
+            while plant_index < len(plants):
+                if type(plants[plant_index]) is PrizeFlower:
+                    scores += plants[plant_index].get_prize_points()
+                plant_index += 1
             info += f"{scores}"
             if (index != len(gardens) - 1):
                 info += " "

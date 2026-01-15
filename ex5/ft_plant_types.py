@@ -33,9 +33,9 @@ class Plant:
         """Returns Plant's current age"""
         return self.__age
 
-    def __str__(self, type: str = "Plant") -> str:
+    def __str__(self, plant_type: str = "Plant") -> str:
         """Returns Plant's current information as well as it's type"""
-        return f"{self.name} ({type}): {self.__height}cm, {self.__age} days,"
+        return f"{self.name} ({plant_type}): {self.__height}cm, {self.__age} days"
 
 
 class Flower(Plant):
@@ -51,7 +51,10 @@ class Flower(Plant):
 
     def set_color(self, color: str) -> None:
         """Set Flower's color"""
-        self.__color = color
+        if color is not None:
+            self.__color = color
+        else:
+            print(f"Invalid operation attempted: color {color} [REJECTED]")
 
     def get_color(self) -> str:
         """Returns Flower's current color"""
@@ -63,7 +66,7 @@ class Flower(Plant):
 
     def __str__(self) -> str:
         """Prints Flower information"""
-        return f"{super().__str__('Flower')} {self.__color} color"
+        return f"{super().__str__('Flower')}, {self.__color} color"
 
 
 class Tree(Plant):
@@ -97,7 +100,7 @@ class Tree(Plant):
 
     def __str__(self) -> str:
         """Prints Tree information"""
-        return f"{super().__str__('Tree')} " \
+        return f"{super().__str__('Tree')}, " \
         f"{self.__trunk_diameter}cm diameter"
 
 
@@ -116,11 +119,19 @@ class Vegetable(Plant):
 
     def set_harvest_season(self, harvest_season: str) -> None:
         """Set Vegetables's harvest season"""
-        self.__harvest_season = harvest_season
+        if harvest_season is not None:
+            self.__harvest_season = harvest_season
+        else:
+            print(f"Invalid operation attempted: harvest season "
+            f"{harvest_season} [REJECTED]")
 
     def set_nutritional_value(self, nutritional_value: str) -> None:
         """Set Vegetables's nutritional value"""
-        self.__nutritional_value = nutritional_value
+        if nutritional_value is not None:
+            self.__nutritional_value = nutritional_value
+        else:
+            print(f"Invalid operation attempted: nutritional value "
+            f" {nutritional_value} [REJECTED]")
 
     def get_harvest_seson(self) -> str:
         """Returns Vegetables's current harvest season"""
@@ -134,10 +145,9 @@ class Vegetable(Plant):
         """Specific Vegetable method"""
         print(f"{self.name} is rich in vitamin {self.__nutritional_value}")
 
-
     def __str__(self) -> str:
         """Prints Vegetable information"""
-        return f"{super().__str__('Vegetable')} " \
+        return f"{super().__str__('Vegetable')}, " \
         f"{self.__harvest_season} harvest"
 
 
