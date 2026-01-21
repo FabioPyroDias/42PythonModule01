@@ -22,7 +22,7 @@ class Plant:
         self.grow()
         self.age()
 
-    def __str__(self) -> str:
+    def get_info(self) -> str:
         """Returns a human-readable string representation
         of the Plant object"""
         return f"{self.name}: {self.height}cm, {self.age_days} days old"
@@ -35,13 +35,13 @@ if __name__ == "__main__":
     rose = Plant("Rose", 25, 30)
     initial_height = rose.height
     print("=== Day 1 ===")
-    print(rose)
+    print(rose.get_info())
     day = 1
     while day < 7:
         rose.update()
         day += 1
     print("=== Day 7 ===")
-    print(rose)
+    print(rose.get_info())
     growth = rose.height - initial_height
     if growth < 0:
         print(f"Growth this week: {growth}cm")

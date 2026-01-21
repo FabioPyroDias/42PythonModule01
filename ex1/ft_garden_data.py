@@ -26,5 +26,3 @@ if __name__ == "__main__":
     print(rose)
     print(sunflower)
     print(cactus)
-    print()
-    print("=== End of Program ===")
