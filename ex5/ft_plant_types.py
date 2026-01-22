@@ -35,7 +35,8 @@ class Plant:
 
     def __str__(self, plant_type: str = "Plant") -> str:
         """Returns Plant's current information as well as it's type"""
-        return f"{self.name} ({plant_type}): {self.__height}cm, {self.__age} days"
+        return f"{self.name} ({plant_type}): {self.__height}cm, " \
+               f"{self.__age} days"
 
 
 class Flower(Plant):
@@ -101,7 +102,7 @@ class Tree(Plant):
     def __str__(self) -> str:
         """Prints Tree information"""
         return f"{super().__str__('Tree')}, " \
-        f"{self.__trunk_diameter}cm diameter"
+               f"{self.__trunk_diameter}cm diameter"
 
 
 class Vegetable(Plant):
@@ -123,7 +124,7 @@ class Vegetable(Plant):
             self.__harvest_season = harvest_season
         else:
             print(f"Invalid operation attempted: harvest season "
-            f"{harvest_season} [REJECTED]")
+                  f"{harvest_season} [REJECTED]")
 
     def set_nutritional_value(self, nutritional_value: str) -> None:
         """Set Vegetables's nutritional value"""
@@ -131,7 +132,7 @@ class Vegetable(Plant):
             self.__nutritional_value = nutritional_value
         else:
             print(f"Invalid operation attempted: nutritional value "
-            f" {nutritional_value} [REJECTED]")
+                  f" {nutritional_value} [REJECTED]")
 
     def get_harvest_seson(self) -> str:
         """Returns Vegetables's current harvest season"""
@@ -148,7 +149,7 @@ class Vegetable(Plant):
     def __str__(self) -> str:
         """Prints Vegetable information"""
         return f"{super().__str__('Vegetable')}, " \
-        f"{self.__harvest_season} harvest"
+               f"{self.__harvest_season} harvest"
 
 
 if __name__ == "__main__":

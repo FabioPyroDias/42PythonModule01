@@ -82,7 +82,7 @@ class PrizeFlower(FloweringPlant):
 
 
 class GardenManager():
-    """Represents the Garden. It will hold several flowers 
+    """Represents the Garden. It will hold several flowers
     and manage them"""
     __gardens = []
 
@@ -134,7 +134,8 @@ class GardenManager():
         index = 0
         while index < n_plants:
             print(f"- {self.__plants[index]}")
-            t_g += self.__plants[index].get_height() - self.__initial_heights[index]
+            t_g += (self.__plants[index].get_height() -
+                    self.__initial_heights[index])
             if type(self.__plants[index]) is Plant:
                 plant_type_normal += 1
             elif type(self.__plants[index]) is FloweringPlant:
